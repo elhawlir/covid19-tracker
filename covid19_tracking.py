@@ -12,6 +12,12 @@ bs = BeautifulSoup(webpage.content, 'html.parser')
 app = Tk()
 app.title("Covid-19 Tracker by Country")
 
+instruction = ttk.Label(app, text='\nStart typing the name of the country you want to track\n')
+instruction.pack()
+
+app.minsize(width=200, height=150)
+app.maxsize(width=600, height=600)
+
 country_search = bs.select("div tbody tr td a.mt_a")
 
 # extracts all the country names from the table
@@ -26,7 +32,7 @@ for name in country_search:
 country_names.insert(0,"Select a country") #instructional option
 
 # creates drop down list in application
-# autocompletes drop down list as you type, case insensitive
+# autocompletes drop down list as you type, case INsensitive
 combo = AutocompleteCombobox(app)
 combo.set_completion_list(country_names)
 combo.pack()
@@ -72,8 +78,9 @@ def display():
     dirty_data = data_collection(combo.get())
     print(dirty_data)
     data = data_cleanup(dirty_data)
-    message = "Country: {}\nTotal infected = {}\nNew Case = {}\nTotal Deaths = {}\nNew Deaths = {}\nRecovered = {}\nActive Case = {}\nSerious Critical = {}".format(combo.get(), *data)
-    print(message)
+    message = "\nCountry: {}\nTotal infected = {}\nNew Case = {}\nTotal Deaths = {}\nNew Deaths = {}\nRecovered = {}\nActive Case = {}\nSerious Critical = {}".format(combo.get(), *data)
+    output = ttk.Label(app, text=message)
+    output.pack()
 
 # creates button that will display results
 button = ttk.Button(app, text = "Display", command = display)
