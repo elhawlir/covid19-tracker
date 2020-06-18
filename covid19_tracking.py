@@ -78,7 +78,7 @@ def display():
     dirty_data = data_collection(combo.get())
     print(dirty_data)
     data = data_cleanup(dirty_data)
-    message = "\nCountry: {}\nTotal infected = {}\nNew Case = {}\nTotal Deaths = {}\nNew Deaths = {}\nRecovered = {}\nActive Case = {}\nSerious Critical = {}".format(combo.get(), *data)
+    message = "\n{}\n\nTotal infected = {}\nNew Cases = {}\nTotal Deaths = {}\nNew Deaths = {}\nRecovered = {}\nActive Cases = {}\nSeriously Critical = {}".format(combo.get(), *data)
     output = ttk.Label(app, text=message)
     output.pack()
 
