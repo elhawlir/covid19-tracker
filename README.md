@@ -4,3 +4,5 @@ Creating a GUI using tkinter in Python.
 
 The GUI serves to track covid-19 around the world. Enter the country you want to learn about
 and it will return the current status of covid-19 in that country.
+
+[![Run on Repl.it](https://repl.it/badge/github/elhawlir/covid19-tracker)](https://repl.it/github/elhawlir/covid19-tracker)
