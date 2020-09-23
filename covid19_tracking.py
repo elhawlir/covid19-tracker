@@ -1,22 +1,11 @@
 #!/usr/bin/env python3
 from bs4 import BeautifulSoup
 import requests
-from tkinter import *
-from tkinter import ttk
+import streamlit as st
 import re
-from autocomplete_class import AutocompleteCombobox
 
 webpage = requests.get("https://www.worldometers.info/coronavirus/")
 bs = BeautifulSoup(webpage.content, 'html.parser')
-
-app = Tk()
-app.title("Covid-19 Tracker by Country")
-
-instruction = ttk.Label(app, text='\nStart typing the name of the country you want to track\n')
-instruction.pack()
-
-app.minsize(width=200, height=150)
-app.maxsize(width=600, height=600)
 
 country_search = bs.select("div tbody tr td a.mt_a")
 
@@ -29,14 +18,13 @@ for name in country_search:
     for i in cleaned:
         country_names.append(i)
 
-country_names.insert(0,"Select a country") #instructional option
+title = st.title('Covid-19 Tracker by Country')
 
 # creates drop down list in application
-# autocompletes drop down list as you type, case INsensitive
-combo = AutocompleteCombobox(app)
-combo.set_completion_list(country_names)
-combo.pack()
-combo.focus_set()
+drop_down = st.selectbox('Choose the country you want to track', country_names)
+if not drop_down:
+    print(st.error("Please select a country."))
+
 
 #cleanses data extracted
 def data_cleanup(array):
@@ -75,16 +63,22 @@ def data_collection(country):
 
 # response to pressing button on application
 def display():
-    dirty_data = data_collection(combo.get())
+    dirty_data = data_collection(drop_down)
     print(dirty_data)
     data = data_cleanup(dirty_data)
-    message = "\n{}\n\nTotal infected = {}\nNew Cases = {}\nTotal Deaths = {}\nNew Deaths = {}\nRecovered = {}\nActive Cases = {}\nSeriously Critical = {}".format(combo.get(), *data)
-    output = ttk.Label(app, text=message)
-    output.pack()
-
+    message = """
+    {}
+    
+    Total infected = {}\n
+    New Cases = {}\n
+    Total Deaths = {}\n
+    New Deaths = {}\n
+    Recovered = {}\n
+    Active Cases = {}\n
+    Seriously Critical = {}
+    """.format(drop_down, *data)
+    st.write(message)
 # creates button that will display results
-button = ttk.Button(app, text = "Display", command = display)
-button.pack()
 
-app.mainloop()
+display()
 
