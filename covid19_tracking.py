@@ -77,8 +77,10 @@ def display():
     Active Cases = {}\n
     Seriously Critical = {}
     """.format(drop_down, *data)
-    st.write(message)
-# creates button that will display results
+    disp = st.write(message)
+    return disp
 
-display()
+# creates button that will display results
+if st.button('Display Results'):
+    display()
 
