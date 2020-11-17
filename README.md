@@ -12,3 +12,4 @@ Be sure to download necessary packages first using:<br />
 `pip install -r requirements.txt`<br />
 And run the app in the environment you used to download streamlit.
 
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/yourGitHubName/yourRepo/yourApp/)
