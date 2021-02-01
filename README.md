@@ -8,7 +8,8 @@ To run this app from the command line, be sure to use the following notation:<br
 `streamlit run covid19_tracking.py`
 (can substitute .py file with whatever you choose to call the file)
 
-Be sure to download streamlit package first using:<br />
-`pip install streamlit`<br />
+Be sure to download necessary packages first using:<br />
+`pip install -r requirements.txt`<br />
 And run the app in the environment you used to download streamlit.
 
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/elhawlir/covid19-tracker/covid19_tracking.py)
